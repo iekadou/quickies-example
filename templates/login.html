@@ -1,0 +1,31 @@
+{% lare_extends "__base.html" LARE_PREFIX "__lare.html" %}
+{% block body_classes %}gray-bg{% endblock body_classes %}
+{% block page %}
+<div id="page">
+    <div class="container text-center">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-4 col-lg-6 col-lg-offset-3" style="padding-top: 100px;">
+            <h1>{% _"Welcome" %}</h1>
+            <p>{% _"Have fun at {{ SITE_NAME }}." {'{{ SITE_NAME }}': SITE_NAME }  %}</p>
+            <form class="api-form" role="form" action="{% url 'api:login' %}" method="POST">
+                <fieldset>
+                    <input id="remember_me" type="hidden" name="remember_me" value="true">
+                    <input type="hidden" value="{{ referrer }}" name="referrer">
+                    <div class="form-group required clearfix">
+                        <div class="controls">
+                            <input id="id_navbar_identification" class="form-control" maxlength="64" name="identification" type="text" placeholder="{% _"E-mail / Username" %}">
+                        </div>
+                    </div>
+                    <div class="form-group required clearfix">
+                        <div class="controls">
+                            <input id="id_navbar_password" class="form-control" name="password" type="password" placeholder="{% _"Password" %}">
+                        </div>
+                     </div>
+                </fieldset>
+                <a href="#" class="btn btn-primary btn-block btn-submit">{% _"Login" %}</a>
+            </form>
+            <br>
+            <a href="{% url 'forgot_password' %}">{% _"Forgot password" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock page %}

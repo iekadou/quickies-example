@@ -1,0 +1,66 @@
+RewriteEngine On
+
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+Header add Access-Control-Allow-Credentials "true"
+
+# deny direct access to views
+RewriteCond %{REQUEST_URI} ^/views/.*$
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule (.*) / [R=404,L,NC]
+
+
+# for URLS_PY append ###namespace### in line
+#URLS_PY START#
+RewriteRule ^$ views/index.php [L] ###home###
+RewriteRule ^activate/([^/\.]+)/?$ views/activate.php?activation_key=$1 [L] ###activate####
+RewriteRule ^activate/$ views/activate.php [L] ###activate####
+
+RewriteRule ^forgot-password/$ views/forgot_password.php [L] ###forgot_password###
+RewriteRule ^logout/$ views/logout.php [L] ###logout###
+RewriteRule ^login/$ views/login.php [L] ###login###
+RewriteRule ^register/$ views/register.php [L] ###register###
+
+RewriteRule ^migrate/$ vendor/iekadou/quickies/lib/Quickies/views/migrate.php [L] ###migrate###
+RewriteRule ^makemigrations/$ vendor/iekadou/quickies/lib/Quickies/views/makemigrations.php [L] ###makemigrations###
+
+# backend urls
+RewriteRule ^account/$ views/account/index.php [L] ###account###
+RewriteRule ^account/activate/$ views/account/activate.php [L] ###account:activate###
+RewriteRule ^account/profile/$ views/account/profile.php [L] ###account:profile###
+RewriteRule ^account/users/$ views/account/users.php [L] ###account:users###
+RewriteRule ^account/user/([^/\.]+)/?$ views/account/user.php?id=$1 [L] ###account:user###
+
+# api urls
+RewriteRule ^api/account/activate/$ vendor/iekadou/quickies/lib/Quickies/api_views/activate.php [L] ###api:account:activate###
+RewriteRule ^api/forgot-password/$ vendor/iekadou/quickies/lib/Quickies/api_views/forgot_password.php [L] ###api:forgot_password###
+RewriteRule ^api/login/$ vendor/iekadou/quickies/lib/Quickies/api_views/login.php [L] ###api:login###
+RewriteRule ^api/profile/$ vendor/iekadou/quickies/lib/Quickies/api_views/profile.php [L] ###api:profile###
+RewriteRule ^api/register/$ vendor/iekadou/quickies/lib/Quickies/api_views/register.php [L] ###api:register###
+RewriteRule ^api/user/$ vendor/iekadou/quickies/lib/Quickies/api_views/user.php [L] ###api:user###
+RewriteRule ^api/user/([^/\.]+)/?$ vendor/iekadou/quickies/lib/Quickies/api_views/user.php?id=$1 [L] ###api:user###
+#URLS_PY END#
+
+# deny direct access to api
+RewriteCond %{REQUEST_URI} ^/api_views/*$
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule (.*) / [R=404,L,NC]
+
+# deny direct access to vendor
+RewriteCond %{REQUEST_URI} ^/vendor/.*$
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule (.*) / [R=404,L,NC]
+
+# restrictions
+RewriteRule ^classes/.*$ - [R=404,L,NC]
+RewriteRule ^config/.*$ - [R=404,L,NC]
+RewriteRule ^inc/.*$ - [R=404,L,NC]
+RewriteRule ^templates/.*$ - [R=404,L,NC]
+RewriteRule ^migrations/.*$ - [R=404,L,NC]
+
+ErrorDocument 404 /views/_errors/404.php

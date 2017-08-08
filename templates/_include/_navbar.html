@@ -1,0 +1,32 @@
+{% if Account.is_logged_in != true %}
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{% _"Login" %} <span class="caret"></span></a>
+    <ul class="dropdown-menu logged-out" role="menu">
+        <li>
+            <form class="navbar-form api-form" role="form" action="{% url 'api:login' %}" method="POST">
+                <fieldset>
+                <div class="form-group required clearfix">
+                        <div class="controls">
+                            <input id="id_navbar_identification" class="form-control" maxlength="64" name="identification" type="text" placeholder="{% _"E-mail / Username" %}">
+                        </div>
+                    </div>
+                    <div class="form-group required clearfix">
+                        <div class="controls">
+                            <input id="id_navbar_password" class="form-control" name="password" type="password" placeholder="{% _"Password" %}">
+                        </div>
+                     </div>
+                    <input id="remember_me" type="hidden" name="remember_me" value="true">
+                </fieldset>
+                <a href="#" class="btn btn-primary btn-block btn-submit">{% _"Login" %}</a>
+            </form>
+        </li>
+        <li class="divider"></li>
+        <li><a href="{% url 'register' %}" class="btn btn-default">{% _"Register" %}</a></li>
+        <li><a href="{% url 'forgot_password' %}" class="btn btn-default">{% _"Forgot password" %}</a></li>
+    </ul>
+</li>
+{% else %}
+<li class="pull-right">
+    <a href="{% url 'logout' %}" data-prevent-lare><span class="fa fa-long-arrow-left"></span>&nbsp;{% _"Logout" %}</a>
+</li>
+{% endif %}

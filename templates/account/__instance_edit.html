@@ -1,0 +1,24 @@
+{% lare_extends "account/__base.html" LARE_PREFIX ~ ".Account" "__lare.html" %}
+
+{% block page_title %}{{ instance_name }}{% endblock %}
+{% block breadcrumbs_description %}{% _"Here you can update {{ INSTANCE_NAME }}." {'{{ INSTANCE_NAME }}': instance_name } %}{% endblock breadcrumbs_description %}
+{% block breadcrumbs %}<li><a href="{{ overview_url }}">{{ overview_label }}</a></li><li><a href="{{ instance_url }}"><strong>{{ instance_name }}</strong></a></li>{% endblock breadcrumbs %}
+{% block content %}
+<div id="content">
+    {% block inner_content %}
+    <div id="inner_content">
+        <div class="well">
+            <form class="form api-form" role="form" action="{{ instance_api_url }}" method="{{ form_method }}" enctype="multipart/form-data">
+                <div class="row">
+                    {{ instance.get_form()|raw }}
+                </div>
+                <p class="small">* {% _"Those fields are required." %}</p>
+                <br>
+                <button class="btn btn-primary" type="submit">{% _"Save" %}</button>
+                <button class="btn btn-default" type="reset">{% _"Reset" %}</button>
+            </form>
+        </div>
+    </div>
+    {% endblock inner_content %}
+</div>
+{% endblock content %}

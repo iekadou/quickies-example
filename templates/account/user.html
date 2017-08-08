@@ -1,0 +1,15 @@
+{% lare_extends "account/__instance_edit.html" "" %}
+
+{% block inner_content %}
+    <div id="inner_content">
+        <div class="well">
+            <form class="form api-form" role="form" action="{% url 'api:user' instance.id %}" method="{{ form_method }}" enctype="multipart/form-data">
+                {{ Form.render|raw }}
+                <p class="small">* {% _"Those fields are required." %}</p>
+                <br>
+                <button class="btn btn-primary" type="submit">{% _"Save" %}</button>
+                <button class="btn btn-default" type="reset">{% _"Reset" %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock inner_content %}
