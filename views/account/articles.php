@@ -2,7 +2,6 @@
 namespace Iekadou\Example;
 require_once("../../inc/include.php");
 use Iekadou\Quickies\Account;
-use Iekadou\Quickies\Globals;
 use Iekadou\Quickies\Translation;
 use Iekadou\Quickies\Utils;
 use Iekadou\Quickies\View;
@@ -12,7 +11,7 @@ if (Account::is_logged_in() != true || !Account::get_user()->admin) {
     die();
 }
 
-$View = new View('Users', Translation::translate('Users'), 'account/users.html');
-$View->set_template_var('users', _i(USERCLASS)->filter_by());
-$View->set_template_var('users_active', true);
+$View = new View('Articles', Translation::translate('Articles'), 'account/articles.html');
+$View->set_template_var('articles', _i(Article::_cn)->filter_by());
+$View->set_template_var('articles_active', true);
 $View->render();

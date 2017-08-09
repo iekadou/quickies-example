@@ -9,9 +9,7 @@
     <div id="inner_content">
         <div class="well">
             <form class="form api-form" role="form" action="{{ instance_api_url }}" method="{{ form_method }}" enctype="multipart/form-data">
-                <div class="row">
-                    {{ instance.get_form()|raw }}
-                </div>
+                {{ instance.get_form()|raw }}
                 <p class="small">* {% _"Those fields are required." %}</p>
                 <br>
                 <button class="btn btn-primary" type="submit">{% _"Save" %}</button>

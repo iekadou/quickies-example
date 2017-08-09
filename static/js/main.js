@@ -356,12 +356,35 @@
 }(window.Webapp = window.Webapp || {}, jQuery));
 
 
-$(document).lareAlways(function() {
+$(document).lareReady(function() {
     if ($.support.lare) {
         $('a').not('[data-prevent-lare]').off('click.lare').on('click.lare', function(event) {
             $(document).lare.click(event);
         });
     }
+    $('.dot-ellipsis').dotdotdot();
+    tinymce.remove();
+    window.setTimeout(function() {
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 500,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            content_css: [
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                '//www.tinymce.com/css/codepen.min.css'],
+            setup: function (editor) {
+                editor.on('change', function () {
+                    tinymce.triggerSave();
+                });
+            }
+        });
+    }, 100);
     Webapp.register_api_forms($(document));
     Webapp.register_delete_buttons();
 });

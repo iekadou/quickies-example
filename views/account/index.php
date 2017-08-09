@@ -13,6 +13,5 @@ if (Account::is_logged_in() != true) {
 }
 
 $View = new View('Dashboard', Translation::translate('Dashboard'), 'account/index.html');
-
-Globals::set_var('dashboard_active', true);
+$View->set_template_var('dashboard_active', true);
 $View->render();

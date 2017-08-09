@@ -1,6 +1,6 @@
 <div class="row form-wrapper">
     {% for key, value in render_fields %}
-        <div class="form-group {% if xs_cols %}col-xs-{{ xs_cols }}{% endif %} {% if sm_cols %}col-sm-{{ sm_cols }}{% else %}col-sm-6{% endif %} {% if md_cols %}col-md-{{ md_cols }}{% endif %} {% if lg_cols %}col-lg-{{ lg_cols }}{% endif %} {% if not value.opts.dependent_status %} hide{% endif %}" data-name="{{ key }}" data-dependent-on="{{ value.opts.dependent_on }}" data-dependent-value="{{ value.opts.dependent_value }}" style="position: relative;">
+        <div class="form-group {% if xs_cols %}col-xs-{{ xs_cols }}{% endif %} {% if sm_cols %}col-sm-{{ sm_cols }}{% else %}col-sm-12{% endif %} {% if md_cols %}col-md-{{ md_cols }}{% endif %} {% if lg_cols %}col-lg-{{ lg_cols }}{% endif %} {% if not value.opts.dependent_status %} hide{% endif %}" data-name="{{ key }}" data-dependent-on="{{ value.opts.dependent_on }}" data-dependent-value="{{ value.opts.dependent_value }}" style="position: relative;">
             {% if value.opts.type == "Iekadou\\Quickies\\VarcharField" %}
             {% if value.opts.verbose_name %}<label class="control-label" for="id_{{ key }}">{{ value.opts.verbose_name }}{% if value.opts.required %}*{% endif %}: {% include "_include/_helptext_info_btn.html" %}</label><br>{% endif %}
             <input type="text" class="form-control" id="id_{{ key }}" name="{{ key }}" value="{{ value.value }}" placeholder="{{ value.opts.placeholder }}">
@@ -45,7 +45,7 @@
             {% endif %}
             {% if value.opts.type == "Iekadou\\Quickies\\TextField" %}
                 {% if value.opts.verbose_name %}<label class="control-label" for="id_{{ key }}">{{ value.opts.verbose_name }}{% if value.opts.required %}*{% endif %}: {% include "_include/_helptext_info_btn.html" %}</label><br>{% endif %}
-                <textarea class="form-control" id="id_{{ key }}" name="{{ key }}" placeholder="{{ value.opts.placeholder }}">{{ value.value }}</textarea>
+                <textarea class="form-control {% if value.opts.html %}tinymce-editor{% endif %}" id="id_{{ key }}" name="{{ key }}" placeholder="{{ value.opts.placeholder }}">{{ value.value }}</textarea>
             {% endif %}
             {% if value.opts.type == "Iekadou\\Quickies\\BooleanField" %}
                 <strong>{{ value.opts.verbose_name }}</strong>

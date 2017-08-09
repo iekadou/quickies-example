@@ -23,18 +23,19 @@ if (!$User) {
 }
 
 $View = new View('User', Translation::translate('User'), 'account/user.html');
-Globals::set_var('form_method', 'PUT');
 $Form = new BaseModelForm(
     $model=get_class($User),
     $fields=array('username', 'email', 'apnkey', 'first_name', 'last_name', 'activated', 'admin'),
-    $object_id=$User->id);
-Globals::set_var('Form', $Form);
-Globals::set_var('form_method', 'PUT');
-Globals::set_var('instance', $User);
-Globals::set_var('instance_name', $User->username);
-Globals::set_var('overview_url', UrlsPy::get_url('account:users'));
-Globals::set_var('overview_label', Translation::translate("Users"));
-Globals::set_var('instance_url', UrlsPy::get_url('account:user', $User->id));
-Globals::set_var('instance_api_url', UrlsPy::get_url('api:user', $User->id));
-Globals::set_var('users_active', true);
+    $object_id=$User->id
+);
+$View->set_template_var('form_method', 'PUT');
+$View->set_template_var('Form', $Form);
+$View->set_template_var('form_method', 'PUT');
+$View->set_template_var('instance', $User);
+$View->set_template_var('instance_name', $User->username);
+$View->set_template_var('overview_url', UrlsPy::get_url('account:users'));
+$View->set_template_var('overview_label', Translation::translate("Users"));
+$View->set_template_var('instance_url', UrlsPy::get_url('account:user', $User->id));
+$View->set_template_var('instance_api_url', UrlsPy::get_url('api:user', $User->id));
+$View->set_template_var('users_active', true);
 $View->render();

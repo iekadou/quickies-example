@@ -1,0 +1,12 @@
+{% lare_extends "__base.html" LARE_PREFIX "__lare.html" %}
+{% block body_classes %}gray-bg{% endblock body_classes %}
+{% block page %}
+<div id="page">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1>{{ article.name }}</h1>
+            <p>{{ article.content|raw }}</p>
+        </div>
+    </div>
+</div>
+{% endblock page %}

@@ -21,6 +21,14 @@ RewriteRule ^$ views/index.php [L] ###home###
 RewriteRule ^activate/([^/\.]+)/?$ views/activate.php?activation_key=$1 [L] ###activate####
 RewriteRule ^activate/$ views/activate.php [L] ###activate####
 
+
+RewriteRule ^api/article/$ api_views/article.php [L] ###api:article###
+RewriteRule ^api/article/([^/\.]+)/?$ api_views/article.php?id=$1 [L] ###api:article###
+RewriteRule ^articles/$ views/articles.php [L] ###articles####
+RewriteRule ^article/([^/\.]+)/?$ views/article.php?id=$1 [L] ###article###
+RewriteRule ^account/articles/$ views/account/articles.php [L] ###account:articles###
+RewriteRule ^account/article/([^/\.]+)/?$ views/account/article.php?id=$1 [L] ###account:article###
+
 RewriteRule ^forgot-password/$ views/forgot_password.php [L] ###forgot_password###
 RewriteRule ^logout/$ views/logout.php [L] ###logout###
 RewriteRule ^login/$ views/login.php [L] ###login###
@@ -45,6 +53,9 @@ RewriteRule ^api/register/$ vendor/iekadou/quickies/lib/Quickies/api_views/regis
 RewriteRule ^api/user/$ vendor/iekadou/quickies/lib/Quickies/api_views/user.php [L] ###api:user###
 RewriteRule ^api/user/([^/\.]+)/?$ vendor/iekadou/quickies/lib/Quickies/api_views/user.php?id=$1 [L] ###api:user###
 #URLS_PY END#
+
+# static/js/tinymce should link to vendor tinymce.
+RewriteRule ^static/js/tinymce/(.*)$ vendor/tinymce/tinymce/$1 [L]
 
 # deny direct access to api
 RewriteCond %{REQUEST_URI} ^/api_views/*$

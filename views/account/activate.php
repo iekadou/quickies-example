@@ -13,5 +13,5 @@ if (Account::is_logged_in() != true) {
 }
 
 $View = new View('Activate', Translation::translate('Activate'), 'account/activate.html');
-Globals::set_var('dashboard_active', true);
+$View->set_template_var('dashboard_active', true);
 $View->render();
