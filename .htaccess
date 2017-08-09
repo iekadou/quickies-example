@@ -9,11 +9,16 @@ Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
 Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
 Header add Access-Control-Allow-Credentials "true"
 
+# prevent direct access to any file except static folder
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} !^/static/.*$
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule (.*) / [R=404,L,NC]
+
 # deny direct access to views
 RewriteCond %{REQUEST_URI} ^/views/.*$
 RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule (.*) / [R=404,L,NC]
-
 
 # for URLS_PY append ###namespace### in line
 #URLS_PY START#
@@ -73,5 +78,10 @@ RewriteRule ^config/.*$ - [R=404,L,NC]
 RewriteRule ^inc/.*$ - [R=404,L,NC]
 RewriteRule ^templates/.*$ - [R=404,L,NC]
 RewriteRule ^migrations/.*$ - [R=404,L,NC]
+
+# appending trailing slash if no file found
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*[^/])$ /$1/ [L,R]
 
 ErrorDocument 404 /views/_errors/404.php

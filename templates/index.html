@@ -19,7 +19,7 @@
                 {% for article in articles %}
                 <div class="col-xs-12">
                     <h2>{{ article.name }}</h2>
-                    <div class="dot-ellipsis" style="height: 150px;">
+                    <div class="dot-ellipsis" style="max-height: 150px;">
                         <p>{{ article.content|raw }}</p>
                     </div>
                     <a href="{% url 'article' article.slug %}">{% _"Read more" %}</a>
