@@ -6,11 +6,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "ircmaxell/password-compat": "dev-master",
-        "twig/twig": "~1.0",
-        "lare_team/twig_lare": ">=1.0.0",
-        "iekadou/quickies": "dev-master",
+        "iekadou/quickies": ">=0.1.1",
         "tinymce/tinymce": ">= 4"
     },
     "config": {
