@@ -26,21 +26,10 @@ RewriteRule ^$ views/index.php [L] ###home###
 RewriteRule ^activate/([^/\.]+)/?$ views/activate.php?activation_key=$1 [L] ###activate####
 RewriteRule ^activate/$ views/activate.php [L] ###activate####
 
-
-RewriteRule ^api/article/$ api_views/article.php [L] ###api:article###
-RewriteRule ^api/article/([^/\.]+)/?$ api_views/article.php?id=$1 [L] ###api:article###
-RewriteRule ^articles/$ views/articles.php [L] ###articles####
-RewriteRule ^article/([^/\.]+)/?$ views/article.php?id=$1 [L] ###article###
-RewriteRule ^account/articles/$ views/account/articles.php [L] ###account:articles###
-RewriteRule ^account/article/([^/\.]+)/?$ views/account/article.php?id=$1 [L] ###account:article###
-
 RewriteRule ^forgot-password/$ views/forgot_password.php [L] ###forgot_password###
 RewriteRule ^logout/$ views/logout.php [L] ###logout###
 RewriteRule ^login/$ views/login.php [L] ###login###
 RewriteRule ^register/$ views/register.php [L] ###register###
-
-RewriteRule ^migrate/$ vendor/iekadou/quickies/lib/Quickies/views/migrate.php [L] ###migrate###
-RewriteRule ^makemigrations/$ vendor/iekadou/quickies/lib/Quickies/views/makemigrations.php [L] ###makemigrations###
 
 # backend urls
 RewriteRule ^account/$ views/account/index.php [L] ###account###
@@ -57,6 +46,14 @@ RewriteRule ^api/profile/$ vendor/iekadou/quickies/lib/Quickies/api_views/profil
 RewriteRule ^api/register/$ vendor/iekadou/quickies/lib/Quickies/api_views/register.php [L] ###api:register###
 RewriteRule ^api/user/$ vendor/iekadou/quickies/lib/Quickies/api_views/user.php [L] ###api:user###
 RewriteRule ^api/user/([^/\.]+)/?$ vendor/iekadou/quickies/lib/Quickies/api_views/user.php?id=$1 [L] ###api:user###
+
+# articles
+RewriteRule ^api/article/$ api_views/article.php [L] ###api:article###
+RewriteRule ^api/article/([^/\.]+)/?$ api_views/article.php?id=$1 [L] ###api:article###
+RewriteRule ^articles/$ views/articles.php [L] ###articles####
+RewriteRule ^article/([^/\.]+)/?$ views/article.php?slug=$1 [L] ###article###
+RewriteRule ^account/articles/$ views/account/articles.php [L] ###account:articles###
+RewriteRule ^account/article/([^/\.]+)/?$ views/account/article.php?id=$1 [L] ###account:article###
 #URLS_PY END#
 
 # static/js/tinymce should link to vendor tinymce.
