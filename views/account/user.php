@@ -1,6 +1,6 @@
 <?php
 namespace Iekadou\Example;
-require_once("../../inc/include.php");
+require_once(getenv('INCLUDE_PHP_PATH'));
 use Iekadou\Quickies\Account;
 use Iekadou\Quickies\BaseModelForm;
 use Iekadou\Quickies\Globals;

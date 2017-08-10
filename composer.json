@@ -1,12 +1,21 @@
 {
-    "repositories": [
+    "name": "iekadou/quickies-example",
+    "version": "0.1.2",
+    "type": "project",
+    "description": "quickies-example - An example project using quickies",
+    "keywords": ["web-framework"],
+    "homepage": "http://quickies.io",
+    "license": "MIT",
+    "authors": [
         {
-            "type": "vcs",
-            "url":  "git@github.com:iekadou/quickies.git"
+            "name": "Jonas Braun",
+            "email": "jonas@iekadou.com",
+            "homepage": "http://iekadou.com",
+            "role": "Project Founder"
         }
     ],
     "require": {
-        "iekadou/quickies": ">=0.1.1",
+        "iekadou/quickies": ">=0.1.2",
         "tinymce/tinymce": ">= 4"
     },
     "config": {

@@ -1,4 +1,3 @@
 <?php
-
-define('PATH', $_SERVER['DOCUMENT_ROOT'].'/');
+define('PATH', dirname(dirname(__FILE__)) . '/');
 require_once(PATH."/vendor/iekadou/quickies/lib/Quickies/utils/include.php");
