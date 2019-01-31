@@ -2,3 +2,4 @@
 vendor
 composer.lock
 quicky
+migrations/*_*.php
